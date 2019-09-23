@@ -1,0 +1,45 @@
+<div>
+
+<button mat-button (click)="goShop()">
+  <i class="material-icons">
+    arrow_back
+  </i>
+</button>
+  <mat-toolbar>Basket</mat-toolbar>
+</div>
+<mat-list *ngFor="let item of items | async">
+  <mat-list-item class="info" >
+
+    <h4 matLine>{{item.prices}} RUB</h4>
+    <p matLine class="demo-2"> {{item.weight}} кг. </p>
+    <p>{{item.description}}</p>
+  </mat-list-item>
+  <div class="addButton">
+    <div class="appDown">
+      <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="addItem(item.id )">
+        <i class="material-icons">
+          arrow_drop_up
+        </i>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon" (click)="removeItem(item.id)">
+
+        <i class="material-icons">
+          arrow_drop_down
+        </i>
+      </button>
+    </div>
+
+    <p>Количество {{ item.counts}} </p>
+  </div>
+
+  <div class="summary">
+    <p> Общая стоимость: {{ item.prices * item.counts }} RUB </p>
+    <p > Общий вес: {{ item.weight * item.counts }} кг</p>
+  </div>
+
+  <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon" (click)="deleteItem(item.id)">
+    <i class="material-icons">
+      cancel_presentation
+    </i>
+  </button>
+</mat-list>
